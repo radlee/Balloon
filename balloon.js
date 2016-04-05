@@ -1,6 +1,13 @@
-var sets = " 4 sets of red, 3 sets of blue, and 3 sets of yellow";
+var sets = "4 sets of red, 3 sets of blue, and 3 sets of yellow";
 var prices = "R 4 for red, R5 for blue, and R5.50 for yellow";
 
+
+
+
+var sets = sets.replace(" and","")
+
+
+console.log(sets);
 
 var splitString = function(stringToSplit, separator){
 	var arrayOfStrings = stringToSplit.split(separator);
@@ -8,40 +15,62 @@ var splitString = function(stringToSplit, separator){
 }
 
 var setsString = splitString(sets, ',');
-var pricesString = splitString(prices, ',');
 
-console.log("\n" + setsString);
-// console.log(pricesString);
-
-var setsArr = []
-
-for (var i =0; i < setsString.length; i++){
-	var set = setsString[i].split( "sets of")
-
-	setsArr.push(set);
+var setsArr = [];
+for(var i =0; i< setsString.length; i++){
+	var set = setsString[i].split('sets of')
+	setsArr.push(set)
 }
+console.log(setsArr);
 
-console.log("The New RRAY " + setsArr)
+//Making an Object-----------------------
 
 
-// var newOne =[];
-// setsArr.forEach(function(item){
-// 	newOne.push(item.replace("and", ""));
+
+// 1 are colors
+// 0 are quants
+
+var setsObj = {};
+setsArr.forEach(function(x){
+	
+	var quantity = Number(x[0]);
+	var color =  x[1];
+	setsObj[color] = quantity  * 3; 
+})
+
+console.log( "\nThe Objects Added!");
+console.log( setsObj);
+
+
+// for(var i = 0; i < setsArr.length; i++){
+// 	var quantity = setsArr[i][0];
+// 	var color = setsArr[i][1];
+
+// 	console.log(quantity)
+// 	console.log(color)
+
+// 	setsObj[quantity] = color;
+// }
+
+
+
+//-----------------------------------------
+
+// var pricesArr = []
+// pricesString.forEach(function(item){
+// 	pricesArr.push(item.replace("for", "")
+// 					   .replace("R", "")
+// 					   .replace(" and", "")
+// 					 );
 // })
 
-var pricesArr = []
-pricesString.forEach(function(item){
-	pricesArr.push(item.replace("for", "")
-					   .replace("R", "")
-					   .replace(" and", "")
-					 );
-})
+
 
 // console.log("New One" + newOne)
 
-setsArr.forEach(function(item){
-	console.log(item);
-})
+// setsArr.forEach(function(item){
+// 	console.log(item);
+// })
 
 
 
