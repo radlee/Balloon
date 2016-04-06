@@ -3,13 +3,8 @@ var prices = "R 4 for red, R5 for blue, and R5.50 for yellow";
 
 var sets = sets.replace(" and","");
 var prices = prices.replace(' and','');
-// var prices = prices.replace(' R','');
 
-console.log("\n-----------How dafaq do I Remove 'R'-------------")
-console.log(sets);
-console.log(prices);
-console.log("-------------------------------------------------")
-
+//Splitting Method
 var splitString = function(stringToSplit, separator){
 	var arrayOfStrings = stringToSplit.split(separator);
 	return arrayOfStrings;
@@ -33,120 +28,103 @@ pricesString.forEach(function(item){
 	pricesArr.push(item.replace(/R/g, ""));
 })
 
-var n = [];
+//Splitting the 'for' and putting them in an array
+var priceList = [];
 for(var i =0; i < pricesArr.length; i++){
 	var str = pricesArr[i].split(' for');
-	n.push(str);
+	priceList.push(str);
 }
-console.log(n)
+console.log(priceList)
 
 //Making Prices Object----
 
 var pricesObj = {};
-n.forEach(function(item){
+priceList.forEach(function(item){
 	var price = Number(item[0]);
 	var color = item[1];
-	pricesObj[price] = color;
+	//Ther's a situation about putting color and price in the OBJ
+	pricesObj[color] = price;
 })
-console.log(pricesObj)
+//Looping through the 'pricesObj'---
+//And getting the prices into a list
 
+
+var thePrices =[];
+var theColors =[];
 for(var key in pricesObj){
 	if(pricesObj.hasOwnProperty(key)){
-		console.log(key + " -> " + pricesObj[key]);
+		thePrices.push(pricesObj[key])
+		theColors.push(key)
+		// console.log(key + " -> " + pricesObj[key]);
 	}
 }
+console.log("\n")
+console.log("The prices : " + thePrices);
+console.log("The colors : " + theColors);
+
+
 
 //Making Sets Object-----------------------
 
-// 1 are colors
-// 0 are quants
-
+var setsObj = {};
 setsArr.forEach(function(x){
-	var setsObj = {};
-	var quantity = Number(x[0]) * 3;
+	var quantity = Number(x[0]);
 	var color =  x[1];
 	setsObj[color] = quantity; 
-	console.log("\n-------------------------------")
-	console.log("We ordered |"+ quantity + "| " + color + " balloons.");
-	console.log("-------------------------------")
 })
 
+var theQuantities =[];
+var theSetColors =[];
+for(var key in setsObj){
+	if(setsObj.hasOwnProperty(key)){
+		theQuantities.push(setsObj[key])
+		theSetColors.push(key)
+		// console.log(key + " -> " + pricesObj[key]);
+	}
+}
 
-// console.log( "\nThe Objects Added!");
-// console.log( setsObj);
+//Getting the Sum Number of each color balloon
 
-// setsP\O
-// for(var i = 0; i < setsArr.length; i++){
-// 	var quantity = setsArr[i][0];
-// 	var color = setsArr[i][1];
-
-// 	console.log(quantity)
-// 	console.log(color)
-
-// 	setsObj[quantity] = color;
-// }
-
-
-
-//-----------------------------------------
-
-// var pricesArr = []
-// pricesString.forEach(function(item){
-// 	pricesArr.push(item.replace("for", "")
-// 					   .replace("R", "")
-// 					   .replace(" and", "")
-// 					 );
-// })
+var theTotalList =[]
+for(var i =0; i< theQuantities.length; i++){
+	var totalPerSet = theQuantities[i] * 3;
+	theTotalList.push(totalPerSet)
+}
 
 
+//Getting the cost of each set
+var x = []
+for(var i =0; i< theQuantities.length; i++){
+	var p = theQuantities[i] * thePrices[i];
+		x.push(p)
+}
 
-// console.log("New One" + newOne)
+//Get the Cost of all The Ballons
+var sumOfAllBalloons =0;
+x.forEach(function(a){
+	sumOfAllBalloons += a;
+})
 
-// setsArr.forEach(function(item){
-// 	console.log(item);
-// })
-
-
-
-
-
-
-
-
-
-
-
+console.log("The Cost of All Balloons is : " + sumOfAllBalloons)
+console.log("\nThese are the Cost of sets : " + x)
 
 
+console.log("Sum : " + theTotalList)
+
+console.log("\n")
+console.log("The quantities : " + theQuantities);
+console.log("The Set colors : " + theSetColors);
+
+console.log("\n---The Prices Object------------------------")
+console.log(pricesObj)
+console.log("------------------------------------")
+console.log("\n---The Sets Object--------------------------");
+console.log(setsObj)
+console.log("------------------------------------")
 
 
+// var x1 = key + key2
 
-
-
-
-
-
-
-
-
-
-
-
-
-// var list = [];
-// list.push(setsArr);
-// var t =[];
-
-
-// // var setList =[];
-// list.forEach(function(set){
-// 	t.push(set);
-// 	for(var i =1; i< setsArr.length; i++){
-// 		console.log("---" + set[i][1])
-// 	}
-// })
-
-// console.log("\n----Console Sets!----")
-// console.log("-------" + list + "\n");
-// // console.log("The Prices : " + pricesArr);
-// // console.log("The Arry : "  + setsArr);
+// console.log("\n-------------------------------")
+// console.log("We ordered |"+ setsObj[quantity] + "| " + color + " balloons.");
+// console.log("-------------------------------")
