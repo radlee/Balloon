@@ -1,13 +1,14 @@
 var sets = "4 sets of red, 3 sets of blue, and 3 sets of yellow";
 var prices = "R 4 for red, R5 for blue, and R5.50 for yellow";
 
+var sets = sets.replace(" and","");
+var prices = prices.replace(' and','');
+// var prices = prices.replace(' R','');
 
-
-
-var sets = sets.replace(" and","")
-
-
+console.log("\n-----------How dafaq do I Remove 'R'-------------")
 console.log(sets);
+console.log(prices);
+console.log("-------------------------------------------------")
 
 var splitString = function(stringToSplit, separator){
 	var arrayOfStrings = stringToSplit.split(separator);
@@ -15,7 +16,10 @@ var splitString = function(stringToSplit, separator){
 }
 
 var setsString = splitString(sets, ',');
+var pricesString = splitString(prices, ',');
 
+
+//sets
 var setsArr = [];
 for(var i =0; i< setsString.length; i++){
 	var set = setsString[i].split('sets of')
@@ -23,25 +27,55 @@ for(var i =0; i< setsString.length; i++){
 }
 console.log(setsArr);
 
-//Making an Object-----------------------
+//Remove all R's from prices-------------
+var pricesArr = []
+pricesString.forEach(function(item){
+	pricesArr.push(item.replace(/R/g, ""));
+})
 
+var n = [];
+for(var i =0; i < pricesArr.length; i++){
+	var str = pricesArr[i].split(' for');
+	n.push(str);
+}
+console.log(n)
 
+//Making Prices Object----
+
+var pricesObj = {};
+n.forEach(function(item){
+	var price = Number(item[0]);
+	var color = item[1];
+	pricesObj[price] = color;
+})
+console.log(pricesObj)
+
+for(var key in pricesObj){
+	if(pricesObj.hasOwnProperty(key)){
+		console.log(key + " -> " + pricesObj[key]);
+	}
+}
+
+//Making Sets Object-----------------------
 
 // 1 are colors
 // 0 are quants
 
-var setsObj = {};
 setsArr.forEach(function(x){
-	
-	var quantity = Number(x[0]);
+	var setsObj = {};
+	var quantity = Number(x[0]) * 3;
 	var color =  x[1];
-	setsObj[color] = quantity  * 3; 
+	setsObj[color] = quantity; 
+	console.log("\n-------------------------------")
+	console.log("We ordered |"+ quantity + "| " + color + " balloons.");
+	console.log("-------------------------------")
 })
 
-console.log( "\nThe Objects Added!");
-console.log( setsObj);
 
+// console.log( "\nThe Objects Added!");
+// console.log( setsObj);
 
+// setsP\O
 // for(var i = 0; i < setsArr.length; i++){
 // 	var quantity = setsArr[i][0];
 // 	var color = setsArr[i][1];
