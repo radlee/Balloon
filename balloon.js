@@ -100,16 +100,35 @@ for(var i =0; i< theQuantities.length; i++){
 }
 
 //Get the Cost of all The Ballons
-var sumOfAllBalloons =0;
+var costOfAllBalloons =0;
 x.forEach(function(a){
-	sumOfAllBalloons += a;
+	costOfAllBalloons += a;
+})
+//Get the Amount of all the Balloons
+var numberOfBallons =0;
+theTotalList.forEach(function(item){
+	numberOfBallons +=item;
 })
 
-console.log("The Cost of All Balloons is : " + sumOfAllBalloons)
+//Cost to inflate the Balloons
+//R2.00
+
+var costToInflate = (numberOfBallons * 2) + costOfAllBalloons; 
+
+//25 People comming to my Party
+var numberOfPartyPeople=25;
+var balloonsLeft = numberOfBallons - numberOfPartyPeople;
+
+console.log("There will be " + balloonsLeft + " balloons left")
+
+console.log("\nTo inflate " + numberOfBallons + " balloons it will all cost R"+ costToInflate)
+
+console.log("\nThere are in total : " + numberOfBallons + " balloons.");
+console.log("The Cost of All Sets is : R" + costOfAllBalloons)
 console.log("\nThese are the Cost of sets : " + x)
 
 
-console.log("Sum : " + theTotalList)
+console.log("Total Number of Balloons in each set : " + theTotalList)
 
 console.log("\n")
 console.log("The quantities : " + theQuantities);
