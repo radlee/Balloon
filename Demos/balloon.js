@@ -20,6 +20,7 @@ for(var i =0; i< setsString.length; i++){
 	var set = setsString[i].split('sets of')
 	setsArr.push(set)
 }
+console.log("Array of Sets")
 console.log(setsArr);
 
 //Remove all R's from prices-------------
@@ -58,9 +59,6 @@ for(var key in pricesObj){
 		// console.log(key + " -> " + pricesObj[key]);
 	}
 }
-console.log("\n")
-console.log("The prices : " + thePrices);
-console.log("The colors : " + theColors);
 
 
 
@@ -70,7 +68,7 @@ var setsObj = {};
 setsArr.forEach(function(x){
 	var quantity = Number(x[0]);
 	var color =  x[1];
-	setsObj[color] = quantity; 
+	setsObj[color] = quantity;
 })
 
 var theQuantities =[];
@@ -110,10 +108,14 @@ theTotalList.forEach(function(item){
 	numberOfBallons +=item;
 })
 
+console.log("\n-------------------------------------------")
+// console.log(pricesObj.yellow)
+console.log("-------------------------------------------")
+
 //Cost to inflate the Balloons
 //R2.00
 
-var costToInflate = (numberOfBallons * 2) + costOfAllBalloons; 
+var costToInflate = (numberOfBallons * 2) + costOfAllBalloons;
 
 //25 People comming to my Party
 var numberOfPartyPeople=25;
@@ -129,6 +131,10 @@ console.log("\nThese are the Cost of sets : " + x)
 
 
 console.log("Total Number of Balloons in each set : " + theTotalList)
+
+console.log("\n")
+console.log("The prices : " + thePrices);
+console.log("The colors : " + theColors);
 
 console.log("\n")
 console.log("The quantities : " + theQuantities);
